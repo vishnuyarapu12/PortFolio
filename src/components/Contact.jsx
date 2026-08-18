@@ -8,7 +8,8 @@ import {
   MessageSquare, 
   Sparkles,
   MapPin,
-  Clock
+  Clock,
+  Phone
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, LeetCodeIcon } from './Icons';
 import confetti from 'canvas-confetti';
@@ -22,7 +23,8 @@ export const Contact = () => {
     message: ''
   });
 
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -32,8 +34,14 @@ export const Contact = () => {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(personalInfo.phone);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
   };
 
   const handleSubmit = (e) => {
@@ -73,7 +81,7 @@ export const Contact = () => {
             Let's Build <span className="text-gradient-primary">Something Together</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl">
-            I'm always interested in learning, building innovative applications, and working on challenging technology problems.
+            I'm always interested in full-stack engineering, machine learning solutions, and technical opportunities.
           </p>
         </div>
 
@@ -88,11 +96,11 @@ export const Contact = () => {
                 Connect with Vishnu
               </h3>
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-                Whether you have an internship opportunity, a software project, or want to discuss full-stack & AI/ML architectures, feel free to reach out.
+                Whether you have an internship opportunity, a software project, or want to discuss full-stack & AI architectures, feel free to reach out.
               </p>
 
               {/* Email Copy Card */}
-              <div className="p-4 rounded-xl bg-dark-surface border border-dark-border mb-6">
+              <div className="p-4 rounded-xl bg-dark-surface border border-dark-border mb-3">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
                   Direct Email
                 </span>
@@ -106,7 +114,27 @@ export const Contact = () => {
                     title="Copy Email Address"
                     aria-label="Copy Email"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Phone Card */}
+              <div className="p-4 rounded-xl bg-dark-surface border border-dark-border mb-6">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+                  Phone / WhatsApp
+                </span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs sm:text-sm text-slate-200 font-medium">
+                    {personalInfo.phone}
+                  </span>
+                  <button
+                    onClick={handleCopyPhone}
+                    className="p-2 rounded-lg bg-dark-card border border-dark-border hover:border-slate-500 text-slate-300 hover:text-white transition-colors flex-shrink-0"
+                    title="Copy Phone Number"
+                    aria-label="Copy Phone"
+                  >
+                    {copiedPhone ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
@@ -119,7 +147,7 @@ export const Contact = () => {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Clock className="w-4 h-4 text-electric-400" />
-                  <span>IST (UTC+5:30) • Rapid Response</span>
+                  <span>IST (UTC+5:30) • Fast Response</span>
                 </div>
               </div>
             </div>
@@ -141,16 +169,6 @@ export const Contact = () => {
                 </a>
 
                 <a
-                  href={personalInfo.leetcode}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3.5 rounded-xl bg-dark-surface border border-dark-border hover:border-slate-500 text-slate-300 hover:text-white flex flex-col items-center justify-center gap-1.5 transition-colors group"
-                >
-                  <LeetCodeIcon className="w-5 h-5 text-amber-400 group-hover:scale-105 transition-transform" />
-                  <span className="text-[10px] font-mono">LeetCode</span>
-                </a>
-
-                <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noreferrer"
@@ -158,6 +176,16 @@ export const Contact = () => {
                 >
                   <LinkedinIcon className="w-5 h-5 text-blue-400 group-hover:scale-105 transition-transform" />
                   <span className="text-[10px] font-mono">LinkedIn</span>
+                </a>
+
+                <a
+                  href={personalInfo.leetcode}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3.5 rounded-xl bg-dark-surface border border-dark-border hover:border-slate-500 text-slate-300 hover:text-white flex flex-col items-center justify-center gap-1.5 transition-colors group"
+                >
+                  <LeetCodeIcon className="w-5 h-5 text-amber-400 group-hover:scale-105 transition-transform" />
+                  <span className="text-[10px] font-mono">LeetCode</span>
                 </a>
               </div>
             </div>
@@ -242,7 +270,7 @@ export const Contact = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Internship opportunity / Project inquiry"
+                      placeholder="Opportunity / Project inquiry"
                       className="w-full px-4 py-3 rounded-xl bg-dark-surface border border-dark-border text-white placeholder-slate-500 text-sm focus:outline-none focus:border-slate-500 transition-colors"
                     />
                   </div>

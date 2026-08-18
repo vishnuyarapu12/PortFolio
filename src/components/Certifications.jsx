@@ -2,15 +2,22 @@ import React from 'react';
 import { 
   Award, 
   CheckCircle, 
-  ExternalLink, 
   ShieldCheck, 
-  Cloud, 
+  Code,
+  Terminal,
   FileCheck,
-  Sparkles
+  Cpu
 } from 'lucide-react';
 import { certificationsData } from '../data/portfolioData';
 
 export const Certifications = () => {
+  const getCertIcon = (title) => {
+    if (title.includes('Python')) return <Terminal className="w-6 h-6 text-emerald-400" />;
+    if (title.includes('C++')) return <Cpu className="w-6 h-6 text-sky-400" />;
+    if (title.includes('Java')) return <Code className="w-6 h-6 text-amber-400" />;
+    return <Award className="w-6 h-6 text-electric-400" />;
+  };
+
   return (
     <section id="certifications" className="py-24 bg-dark-bg relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -25,71 +32,55 @@ export const Certifications = () => {
             Industry <span className="text-gradient-primary">Certifications</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl">
-            Recognized developer programs, enterprise cloud certifications, and technical internships.
+            Recognized programming certifications from Cisco and GeeksForGeeks, plus developer programs.
           </p>
         </div>
 
-        {/* Certificate Cards */}
-        <div className="grid grid-cols-1 gap-6">
+        {/* Certificate Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {certificationsData.map((cert, idx) => (
             <div
               key={idx}
-              className="glass-card glass-card-hover p-6 sm:p-8 rounded-2xl border border-dark-border relative overflow-hidden"
+              className="glass-card glass-card-hover p-6 sm:p-7 rounded-2xl border border-dark-border flex flex-col justify-between"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                
-                {/* Left Badge Graphic */}
-                <div className="lg:col-span-3 flex flex-col items-center justify-center p-6 rounded-2xl bg-dark-surface border border-dark-border text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-dark-card border border-dark-border flex items-center justify-center text-electric-400 mb-3">
-                    <Cloud className="w-7 h-7" />
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-dark-surface border border-dark-border flex items-center justify-center">
+                    {getCertIcon(cert.title)}
                   </div>
-                  <span className="text-xs font-mono font-bold text-white">
-                    Salesforce Agentblazer
-                  </span>
-                  <span className="text-[11px] font-mono text-slate-400 mt-0.5">
-                    Champion Program
+                  <span className="inline-flex items-center gap-1 text-[11px] font-mono px-2.5 py-1 rounded-full bg-dark-surface text-emerald-400 border border-dark-border font-semibold">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    Verified
                   </span>
                 </div>
 
-                {/* Right Content */}
-                <div className="lg:col-span-9">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <h3 className="font-display font-bold text-xl sm:text-2xl text-white">
-                      {cert.title}
-                    </h3>
-                    <span className="inline-flex items-center gap-1 text-xs font-mono px-3 py-1 rounded-full bg-dark-surface text-emerald-400 border border-dark-border font-semibold">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                      Program Verified
-                    </span>
-                  </div>
+                <h3 className="font-display font-bold text-lg text-white mb-1">
+                  {cert.title}
+                </h3>
 
-                  <p className="text-xs sm:text-sm font-mono text-electric-400 mb-3">
-                    {cert.issuer} • {cert.type} ({cert.period})
-                  </p>
+                <p className="text-xs font-mono text-electric-400 mb-3">
+                  {cert.issuer} • {cert.type}
+                </p>
 
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light mb-6">
-                    {cert.description}
-                  </p>
-
-                  {/* Skills Learned Badges */}
-                  <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold block mb-2">
-                      Core Competencies Mastered:
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {cert.skillsLearned.map((skill, sIdx) => (
-                        <span
-                          key={sIdx}
-                          className="px-2.5 py-1 rounded-lg bg-dark-surface border border-dark-border text-slate-300 text-xs font-mono"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
+                <p className="text-xs text-slate-300 leading-relaxed font-light mb-5">
+                  {cert.description}
+                </p>
               </div>
+
+              {/* Skills Learned Badges */}
+              <div className="pt-4 border-t border-dark-border">
+                <div className="flex flex-wrap gap-1.5">
+                  {cert.skillsLearned.map((skill, sIdx) => (
+                    <span
+                      key={sIdx}
+                      className="px-2 py-0.5 rounded-md bg-dark-surface border border-dark-border text-slate-300 text-[11px] font-mono"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
             </div>
           ))}
         </div>

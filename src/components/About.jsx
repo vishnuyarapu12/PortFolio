@@ -11,29 +11,29 @@ import {
   Compass,
   Zap
 } from 'lucide-react';
-import { personalInfo, educationData } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
 
 export const About = () => {
   const highlights = [
     {
       icon: <Brain className="w-5 h-5 text-emerald-400" />,
-      title: "AI & Deep Learning",
-      description: "Practical engineering developing CNN computer vision models (MobileNetV2) and integrating generative AI APIs (Google Gemini)."
+      title: "AI & Machine Learning",
+      description: "Hands-on development of CNN models for crop disease detection and NLP summarization pipelines with Whisper API and Groq (LLaMA)."
     },
     {
       icon: <Server className="w-5 h-5 text-electric-400" />,
-      title: "Full-Stack Web Architectures",
-      description: "Engineering scalable client-server applications using React, Python (FastAPI/Flask), Node.js, and relational databases with MySQL."
+      title: "Full-Stack Web Development",
+      description: "Engineering scalable client-server applications with React, Node.js, Python (FastAPI/Flask), and relational database modeling with MySQL."
     },
     {
       icon: <Layers className="w-5 h-5 text-sky-400" />,
-      title: "Real-World Engineering",
-      description: "Focused on end-to-end practical products: geolocation presence trackers (VolleyTrack), agronomy platforms (AgriVerse), and audio transformers."
+      title: "Algorithms & Languages",
+      description: "Strong proficiency in Java, C, Python, JavaScript, and database query optimization with SQL, verified through Cisco and GFG certifications."
     },
     {
       icon: <GraduationCap className="w-5 h-5 text-indigo-400" />,
-      title: "Strong Academic Foundation",
-      description: "IT Engineering student at Vidya Jyothi Institute of Technology with an 8.16 GPA and rigorous fundamentals in DSA and systems."
+      title: "B.Tech Graduate",
+      description: "Information Technology graduate from Vidya Jyothi Institute of Technology with an 8.21 CGPA and rigorous computer science fundamentals."
     }
   ];
 
@@ -51,7 +51,7 @@ export const About = () => {
             About <span className="text-gradient-primary">Me</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl">
-            Passionate software developer driven by architectural curiosity, practical engineering, and AI-powered innovation.
+            Enthusiastic Full Stack Developer with strong understanding of frontend, backend, databases, and AI systems.
           </p>
         </div>
 
@@ -62,15 +62,15 @@ export const About = () => {
           <div className="lg:col-span-7 flex flex-col justify-between glass-card p-6 sm:p-8 rounded-2xl border border-dark-border">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-11 h-11 rounded-xl bg-dark-card border border-dark-border flex items-center justify-center text-electric-400">
-                  <User className="w-5 h-5" />
+                <div className="w-11 h-11 rounded-xl bg-dark-card border border-dark-border flex items-center justify-center text-electric-400 font-bold font-display text-base">
+                  VY
                 </div>
                 <div>
                   <h3 className="font-display font-bold text-xl text-white">
-                    Vishnu Yarapu
+                    {personalInfo.fullName}
                   </h3>
                   <p className="text-xs font-mono text-electric-400">
-                    B.Tech Information Technology • VJIT (8.16 GPA)
+                    B.Tech Information Technology • VJIT (8.21 CGPA)
                   </p>
                 </div>
               </div>
@@ -88,7 +88,7 @@ export const About = () => {
               <div className="mt-6 p-4 rounded-xl bg-dark-surface border border-dark-border flex items-start gap-3">
                 <Sparkles className="w-4 h-4 text-electric-400 flex-shrink-0 mt-0.5" />
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-mono">
-                  "I focus on turning algorithmic problem-solving and modern frameworks into reliable, performant, and user-centric software products."
+                  "{personalInfo.bio}"
                 </p>
               </div>
             </div>

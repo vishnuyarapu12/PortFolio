@@ -38,39 +38,39 @@ export const Hero = ({ onOpenResume }) => {
 
   const specializationDetails = {
     fullstack: {
-      title: "Full-Stack Web Architecture",
-      subtitle: "React • FastAPI • Node.js • MySQL",
-      description: "Building responsive progressive web applications (PWAs) with high-speed async backends, geolocation algorithms, and real-time state synchronization.",
+      title: "Full-Stack Web Development",
+      subtitle: "React • Node.js • JavaScript • MySQL",
+      description: "Building responsive client applications with React and high-speed backend services with Node.js and FastAPI, integrated with structured relational databases.",
       badge: "Web Systems",
       color: "text-sky-400",
       stats: [
-        { label: "Frontend", val: "React + Vite" },
-        { label: "Backend", val: "FastAPI / Flask" },
-        { label: "Storage", val: "MySQL / SQL" }
+        { label: "Frontend", val: "React + JS" },
+        { label: "Backend", val: "Node.js / FastAPI" },
+        { label: "Storage", val: "MySQL RDBMS" }
       ]
     },
     ai: {
-      title: "Applied AI & Computer Vision",
-      subtitle: "TensorFlow • MobileNetV2 • Google Gemini",
-      description: "Developing CNN inference pipelines for leaf disease detection, multimodal Gemini advisory integration, and automated speech-to-text workflows.",
-      badge: "Deep Learning",
+      title: "Applied Machine Learning & NLP",
+      subtitle: "TensorFlow • CNN • Whisper API • Groq (LLaMA)",
+      description: "Developing CNN inference pipelines for crop disease detection and automated speech-to-text video summarization with Whisper API and Groq LLMs.",
+      badge: "AI / ML & NLP",
       color: "text-emerald-400",
       stats: [
-        { label: "Vision CNN", val: "MobileNetV2" },
-        { label: "Generative AI", val: "Google Gemini" },
-        { label: "Voice AI", val: "STT / TTS" }
+        { label: "Computer Vision", val: "CNN (TensorFlow)" },
+        { label: "Speech-to-Text", val: "Whisper API" },
+        { label: "LLM Insights", val: "Groq (LLaMA)" }
       ]
     },
     backend: {
-      title: "Enterprise & Backend Systems",
-      subtitle: "Java • Apex • REST APIs • Cloud",
-      description: "Robust object-oriented system design, Salesforce Agentblazer developer program experience, and clean modular microservices.",
+      title: "Languages & System Foundations",
+      subtitle: "Java • C • Python • Git/GitHub • Vercel/Render",
+      description: "Strong foundation in Java (GFG certified), C & Python (Cisco certified), Salesforce developer internship, and modern deployment platforms.",
       badge: "Core Engineering",
       color: "text-amber-400",
       stats: [
-        { label: "Languages", val: "Java / Python / C++" },
-        { label: "Internship", val: "Salesforce LWC" },
-        { label: "Degree GPA", val: "8.16 / 10.0" }
+        { label: "Languages", val: "Java / C / Python" },
+        { label: "Tools", val: "Git / Vercel / Render" },
+        { label: "Degree CGPA", val: "8.21 / 10.0" }
       ]
     }
   };
@@ -99,21 +99,21 @@ export const Hero = ({ onOpenResume }) => {
             {/* Status Pill UI */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-dark-card border border-dark-border mb-6 shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-electric-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-electric-400"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
               </span>
               <span className="text-xs font-mono font-medium text-slate-300">
-                Information Technology Engineer • Available for Roles
+                B.Tech IT Graduate • Open for Opportunities
               </span>
             </div>
 
             {/* Name Heading with Clean UI Typography */}
             <div className="mb-4">
               <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold block mb-1">
-                Software Developer Portfolio
+                Full-Stack & AI Software Developer
               </span>
               <h1 className="font-display font-black tracking-tight text-4xl sm:text-5xl md:text-6xl text-white leading-[1.08]">
-                Vishnu Yarapu
+                {personalInfo.name}
               </h1>
             </div>
 
@@ -199,10 +199,10 @@ export const Hero = ({ onOpenResume }) => {
             {/* Quick Education & Credentials Row */}
             <div className="pt-6 border-t border-dark-border w-full flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-mono text-slate-400">
               <span className="flex items-center gap-1.5 text-slate-300">
-                <GraduationCap className="w-3.5 h-3.5 text-electric-400" /> VJIT (8.16 GPA)
+                <GraduationCap className="w-3.5 h-3.5 text-electric-400" /> VJIT (8.21 CGPA)
               </span>
               <span className="flex items-center gap-1.5 text-slate-300">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Salesforce Agentblazer
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Cisco & GFG Certified
               </span>
               <span className="flex items-center gap-1.5 text-slate-300">
                 <Globe className="w-3.5 h-3.5 text-sky-400" /> Hyderabad, India
@@ -225,17 +225,17 @@ export const Hero = ({ onOpenResume }) => {
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-base text-white flex items-center gap-1.5">
-                      <span>Vishnu Yarapu</span>
+                      <span>{personalInfo.fullName}</span>
                       <span className="w-2 h-2 rounded-full bg-emerald-400" title="Available"></span>
                     </h3>
                     <p className="text-xs font-mono text-slate-400">
-                      Full-Stack & AI/ML Software Developer
+                      Full-Stack & AI Software Developer
                     </p>
                   </div>
                 </div>
 
                 <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-dark-surface border border-dark-border text-electric-400 font-semibold">
-                  Engineering v2.6
+                  8.21 CGPA
                 </span>
               </div>
 
@@ -275,7 +275,7 @@ export const Hero = ({ onOpenResume }) => {
                         : 'bg-dark-surface border border-dark-border text-slate-400 hover:text-white'
                     }`}
                   >
-                    Systems
+                    Languages
                   </button>
                 </div>
               </div>
@@ -322,21 +322,21 @@ export const Hero = ({ onOpenResume }) => {
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Globe className="w-4 h-4 text-sky-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">Client UI</div>
-                    <div className="text-[9px] text-slate-400">React PWA</div>
+                    <div className="text-[9px] text-slate-400">React</div>
                   </div>
 
                   {/* Step 2 */}
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Server className="w-4 h-4 text-blue-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">API Layer</div>
-                    <div className="text-[9px] text-slate-400">FastAPI</div>
+                    <div className="text-[9px] text-slate-400">FastAPI/Node</div>
                   </div>
 
                   {/* Step 3 */}
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Bot className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">AI Engine</div>
-                    <div className="text-[9px] text-slate-400">Gemini/CNN</div>
+                    <div className="text-[9px] text-slate-400">CNN/Groq</div>
                   </div>
 
                   {/* Step 4 */}
