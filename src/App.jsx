@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { AnimatedSection } from './components/AnimatedSection';
+import { ScrollProgress } from './components/ScrollProgress';
+import { LoadingOverlay } from './components/LoadingOverlay';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -20,48 +22,62 @@ export const App = () => {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-dark-bg text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-dark-bg text-slate-100 selection:bg-ocean-500/30 selection:text-cyan-200">
       
+      {/* Subtle Top Scroll Progress Line */}
+      <ScrollProgress />
+
+      {/* Brief Entry Fade Overlay */}
+      <LoadingOverlay />
+
       {/* Sticky Navigation Bar */}
       <Navbar onOpenResume={() => setIsResumeModalOpen(true)} />
 
       <main>
-        {/* Hero has its own cinematic staggered entrance — no AnimatedSection wrapper */}
+        {/* Hero with progressive cinematic staggered entrance */}
         <Hero onOpenResume={() => setIsResumeModalOpen(true)} />
 
-        {/* Every section below reveals cinematically when scrolled into view */}
+        {/* 1. About Me */}
         <AnimatedSection>
           <About />
         </AnimatedSection>
 
+        {/* 2. Technical Skills */}
         <AnimatedSection>
           <Skills />
         </AnimatedSection>
 
+        {/* 3. Projects Showcase */}
         <AnimatedSection>
           <Projects onSelectProject={(project) => setSelectedProject(project)} />
         </AnimatedSection>
 
+        {/* 4. Experience & Journey Timeline */}
         <AnimatedSection>
           <Experience />
         </AnimatedSection>
 
+        {/* 5. Industry Certifications */}
         <AnimatedSection>
           <Certifications />
         </AnimatedSection>
 
+        {/* 6. Academic Background */}
         <AnimatedSection>
           <Education />
         </AnimatedSection>
 
+        {/* 7. Coding Profiles (GitHub, LeetCode) */}
         <AnimatedSection>
           <CodingProfiles />
         </AnimatedSection>
 
+        {/* 8. Dedicated Resume Section */}
         <AnimatedSection>
           <ResumeSection onOpenResume={() => setIsResumeModalOpen(true)} />
         </AnimatedSection>
 
+        {/* 9. Contact Section */}
         <AnimatedSection>
           <Contact />
         </AnimatedSection>

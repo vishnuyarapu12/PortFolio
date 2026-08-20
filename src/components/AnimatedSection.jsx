@@ -5,17 +5,17 @@ import { useReveal } from '../hooks/useReveal';
  * AnimatedSection — cinematic section-level reveal wrapper.
  *
  * Wraps an entire section. When 15% of the section enters the viewport,
- * it fades in and gently rises from below. Animates once only.
+ * it gently fades in and rises from 40px below with a soft scale-up.
  *
  * Props:
  *   delay     — transitionDelay in ms (default 0)
- *   threshold — IntersectionObserver threshold (default 0.1)
+ *   threshold — IntersectionObserver threshold (default 0.12)
  *   className — forwarded to wrapper div
  */
 export const AnimatedSection = ({
   children,
   delay = 0,
-  threshold = 0.1,
+  threshold = 0.12,
   className = '',
 }) => {
   const { ref, inView } = useReveal(threshold);
@@ -28,10 +28,10 @@ export const AnimatedSection = ({
         opacity: inView ? 1 : 0,
         transform: inView
           ? 'translateY(0px) scale(1)'
-          : 'translateY(45px) scale(0.97)',
+          : 'translateY(40px) scale(0.97)',
         transition: `
-          opacity  0.95s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
-          transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
+          opacity 950ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
+          transform 950ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
         `,
         willChange: 'opacity, transform',
       }}
@@ -44,26 +44,27 @@ export const AnimatedSection = ({
 /**
  * Reveal — individual element reveal with stagger support.
  *
- * Lighter than AnimatedSection — designed for cards, headings,
- * individual items that should stagger within a parent section.
+ * Designed for cards, headings, and individual items that stagger
+ * inside a parent section.
  *
  * Props:
  *   delay     — transitionDelay in ms for stagger (default 0)
- *   y         — translateY start distance in px (default 28)
+ *   y         — translateY start distance in px (default 20)
  *   duration  — animation duration in ms (default 750)
- *   threshold — IntersectionObserver threshold (default 0.12)
+ *   threshold — IntersectionObserver threshold (default 0.1)
  *   as        — element tag to render (default 'div')
  *   className — forwarded to element
  */
 export const Reveal = ({
   children,
   delay = 0,
-  y = 28,
+  y = 20,
   duration = 750,
-  threshold = 0.12,
+  threshold = 0.1,
   as: Tag = 'div',
   className = '',
   style = {},
+  ...rest
 }) => {
   const { ref, inView } = useReveal(threshold);
 
@@ -76,13 +77,14 @@ export const Reveal = ({
         opacity: inView ? 1 : 0,
         transform: inView
           ? 'translateY(0px) scale(1)'
-          : `translateY(${y}px) scale(0.97)`,
+          : `translateY(${y}px) scale(0.98)`,
         transition: `
-          opacity  ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
+          opacity ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
           transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
         `,
         willChange: 'opacity, transform',
       }}
+      {...rest}
     >
       {children}
     </Tag>

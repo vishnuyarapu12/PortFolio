@@ -3,15 +3,10 @@ import {
   X, 
   CheckCircle2, 
   Sparkles, 
-  Layers, 
-  Terminal,
-  Bot,
-  Radio,
-  Video,
-  MessageSquare,
-  Cpu
+  Bot
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
+import { Button } from './Button';
 
 export const ProjectModal = ({ project, onClose }) => {
   useEffect(() => {
@@ -40,7 +35,7 @@ export const ProjectModal = ({ project, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-dark-card border border-dark-border text-slate-400 hover:text-white hover:border-slate-500 transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-dark-card border border-dark-border text-slate-400 hover:text-white hover:border-ocean-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -52,7 +47,7 @@ export const ProjectModal = ({ project, onClose }) => {
             {project.category}
           </span>
           {project.featured && (
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+            <span className="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 font-semibold">
               <Sparkles className="w-3 h-3" /> Flagship Project
             </span>
           )}
@@ -63,7 +58,7 @@ export const ProjectModal = ({ project, onClose }) => {
           {project.title}
         </h3>
 
-        <p className="text-sm font-mono text-electric-400 mb-6">
+        <p className="text-sm font-mono text-cyan-400 mb-6">
           "{project.tagline}"
         </p>
 
@@ -85,7 +80,7 @@ export const ProjectModal = ({ project, onClose }) => {
           <div className="space-y-2.5">
             {project.keyFeatures.map((feat, idx) => (
               <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-electric-400 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
                 <span className="font-light">{feat}</span>
               </div>
             ))}
@@ -132,18 +127,19 @@ export const ProjectModal = ({ project, onClose }) => {
             href={project.github}
             target="_blank"
             rel="noreferrer"
-            className="px-6 py-3 rounded-xl bg-white text-dark-bg font-bold text-xs uppercase tracking-wide flex items-center gap-2 hover:bg-slate-200 transition-all"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-ocean-500 to-sky-500 hover:from-ocean-400 hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wide flex items-center gap-2 shadow-btn-primary transition-all"
           >
             <GithubIcon className="w-4 h-4" />
             <span>Open Repository on GitHub</span>
           </a>
 
-          <button
+          <Button
+            variant="ghost"
             onClick={onClose}
-            className="px-5 py-3 rounded-xl bg-dark-card border border-dark-border text-slate-300 hover:text-white text-xs font-mono transition-colors"
+            className="px-5 py-3"
           >
             Close Window
-          </button>
+          </Button>
         </div>
 
       </div>

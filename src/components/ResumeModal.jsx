@@ -3,18 +3,14 @@ import {
   X, 
   Download, 
   Printer, 
-  Mail, 
   GraduationCap, 
   Award, 
   Briefcase, 
   Cpu,
-  CheckCircle2,
-  FileText,
-  Phone,
-  MapPin
+  FileText
 } from 'lucide-react';
 import { GithubIcon, LeetCodeIcon, LinkedinIcon } from './Icons';
-import { personalInfo, educationData, skillsData, projectsData, experienceJourney, certificationsData } from '../data/portfolioData';
+import { personalInfo, educationData, projectsData } from '../data/portfolioData';
 
 export const ResumeModal = ({ isOpen, onClose }) => {
   useEffect(() => {
@@ -61,7 +57,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
         {/* Top Modal Controls Bar */}
         <div className="px-6 py-4 bg-dark-surface border-b border-dark-border flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-electric-400" />
+            <FileText className="w-5 h-5 text-cyan-400" />
             <span className="font-display font-bold text-white text-base">
               Digital Resume • {personalInfo.fullName}
             </span>
@@ -70,7 +66,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           <div className="flex items-center gap-3">
             <button
               onClick={handleDownloadPdf}
-              className="px-4 py-1.5 rounded-xl bg-white text-dark-bg font-bold text-xs uppercase flex items-center gap-1.5 hover:bg-slate-200 transition-all shadow-sm"
+              className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-ocean-500 to-sky-500 hover:from-ocean-400 hover:to-sky-400 text-white font-bold text-xs uppercase flex items-center gap-1.5 shadow-btn-primary transition-all cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download PDF</span>
@@ -78,7 +74,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
             <button
               onClick={handlePrint}
-              className="p-2 rounded-xl bg-dark-card border border-dark-border text-slate-300 hover:text-white transition-colors hidden sm:block"
+              className="p-2 rounded-xl bg-dark-card border border-dark-border text-slate-300 hover:text-white hover:border-ocean-400/40 transition-colors hidden sm:block cursor-pointer"
               title="Print Resume"
             >
               <Printer className="w-4 h-4" />
@@ -86,7 +82,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-dark-card border border-dark-border text-slate-400 hover:text-white transition-colors"
+              className="p-2 rounded-xl bg-dark-card border border-dark-border text-slate-400 hover:text-white hover:border-ocean-400/40 transition-colors cursor-pointer"
               aria-label="Close resume viewer"
             >
               <X className="w-5 h-5" />
@@ -104,7 +100,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
                 <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-white">
                   {personalInfo.fullName}
                 </h1>
-                <p className="text-electric-400 font-mono text-sm sm:text-base font-semibold mt-1">
+                <p className="text-cyan-400 font-mono text-sm sm:text-base font-semibold mt-1">
                   Full Stack Developer • Software Engineer
                 </p>
               </div>
@@ -113,15 +109,15 @@ export const ResumeModal = ({ isOpen, onClose }) => {
                 <div>Hyderabad, India • {personalInfo.phone}</div>
                 <div className="text-slate-200">{personalInfo.email}</div>
                 <div className="flex sm:justify-end gap-3 pt-1 text-slate-400">
-                  <a href={personalInfo.github} target="_blank" rel="noreferrer" className="hover:text-white underline">
+                  <a href={personalInfo.github} target="_blank" rel="noreferrer" className="hover:text-cyan-300 underline">
                     GitHub
                   </a>
                   <span>•</span>
-                  <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:text-white underline">
+                  <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:text-cyan-300 underline">
                     LinkedIn
                   </a>
                   <span>•</span>
-                  <a href={personalInfo.leetcode} target="_blank" rel="noreferrer" className="hover:text-white underline">
+                  <a href={personalInfo.leetcode} target="_blank" rel="noreferrer" className="hover:text-amber-300 underline">
                     LeetCode
                   </a>
                 </div>
@@ -141,7 +137,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           {/* Education */}
           <div>
             <h2 className="font-display font-bold text-lg text-white border-b border-dark-border pb-2 mb-4 flex items-center gap-2">
-              <GraduationCap className="w-5 h-5 text-electric-400" />
+              <GraduationCap className="w-5 h-5 text-cyan-400" />
               <span>EDUCATION</span>
             </h2>
 
@@ -152,7 +148,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
                     <h3 className="font-bold text-white text-sm sm:text-base">
                       {edu.institution}
                     </h3>
-                    <p className="text-xs font-mono text-electric-400">
+                    <p className="text-xs font-mono text-cyan-400">
                       {edu.degree} ({edu.period})
                     </p>
                   </div>
@@ -167,13 +163,13 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           {/* Technologies */}
           <div>
             <h2 className="font-display font-bold text-lg text-white border-b border-dark-border pb-2 mb-4 flex items-center gap-2">
-              <Cpu className="w-5 h-5 text-electric-400" />
+              <Cpu className="w-5 h-5 text-cyan-400" />
               <span>TECHNOLOGIES & SKILLS</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="p-3 rounded-xl bg-dark-surface border border-dark-border">
-                <span className="font-mono font-bold text-electric-400 block mb-1">Languages:</span>
+                <span className="font-mono font-bold text-cyan-400 block mb-1">Languages:</span>
                 <span className="text-slate-300">Java, JavaScript, Python, C, SQL</span>
               </div>
               <div className="p-3 rounded-xl bg-dark-surface border border-dark-border">
@@ -193,7 +189,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
                 <span className="text-slate-300">MySQL, Relational Database Queries</span>
               </div>
               <div className="p-3 rounded-xl bg-dark-surface border border-dark-border">
-                <span className="font-mono font-bold text-slate-300 block mb-1">Tools:</span>
+                <span className="font-mono font-bold text-slate-300 block mb-1">Tools & Platforms:</span>
                 <span className="text-slate-300">Git, GitHub, Vercel, Render, Streamlit, YouTubeTools</span>
               </div>
             </div>
@@ -202,7 +198,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           {/* Key Projects */}
           <div>
             <h2 className="font-display font-bold text-lg text-white border-b border-dark-border pb-2 mb-4 flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-electric-400" />
+              <Briefcase className="w-5 h-5 text-cyan-400" />
               <span>PROJECTS</span>
             </h2>
 
@@ -242,7 +238,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           {/* Certificates */}
           <div>
             <h2 className="font-display font-bold text-lg text-white border-b border-dark-border pb-2 mb-4 flex items-center gap-2">
-              <Award className="w-5 h-5 text-electric-400" />
+              <Award className="w-5 h-5 text-cyan-400" />
               <span>CERTIFICATES</span>
             </h2>
 
