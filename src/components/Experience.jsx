@@ -10,6 +10,7 @@ import {
   Award
 } from 'lucide-react';
 import { experienceJourney } from '../data/portfolioData';
+import { Reveal } from './AnimatedSection';
 
 export const Experience = () => {
   return (
@@ -17,7 +18,7 @@ export const Experience = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <Reveal delay={0} className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-dark-card border border-dark-border text-slate-300 font-mono text-xs mb-3">
             <Milestone className="w-3.5 h-3.5 text-electric-400" />
             <span>04. Growth Trajectory</span>
@@ -28,13 +29,13 @@ export const Experience = () => {
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl">
             A chronological timeline of hands-on software development, virtual internships, and AI engineering.
           </p>
-        </div>
+        </Reveal>
 
         {/* Vertical Timeline Tree */}
         <div className="relative border-l border-dark-border ml-4 sm:ml-32 space-y-12 pb-6">
           {experienceJourney.map((milestone, idx) => (
-            <div key={idx} className="relative pl-6 sm:pl-10 group">
-              
+            <Reveal key={idx} delay={idx * 120} duration={850}>
+              <div className="relative pl-6 sm:pl-10 group">
               {/* Year Marker on Left for Desktop */}
               <div className="hidden sm:block absolute -left-32 top-1 text-right w-24">
                 <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-dark-card border border-dark-border text-slate-300">
@@ -89,7 +90,9 @@ export const Experience = () => {
 
               </div>
 
-            </div>
+              </div>
+
+            </Reveal>
           ))}
         </div>
 

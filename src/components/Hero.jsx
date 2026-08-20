@@ -22,6 +22,7 @@ import { GithubIcon } from './Icons';
 import { ParticleCanvas } from './ParticleCanvas';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { personalInfo } from '../data/portfolioData';
+import { smoothScrollTo } from '../utils/smoothScroll';
 
 export const Hero = ({ onOpenResume }) => {
   const animatedRole = useTypewriter(personalInfo.roles, 90, 45, 1800);
@@ -32,7 +33,7 @@ export const Hero = ({ onOpenResume }) => {
     if (el) {
       const navOffset = 70;
       const pos = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
-      window.scrollTo({ top: pos, behavior: 'smooth' });
+      smoothScrollTo(pos, 650);
     }
   };
 
@@ -85,19 +86,20 @@ export const Hero = ({ onOpenResume }) => {
       {/* Ambient Starfield Canvas */}
       <ParticleCanvas />
 
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-500/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* Ambient background glow — subtle pulse */}
+      <div className="hero-ambient-glow absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-electric-500/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-sky-500/3 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
           {/* ======================================================== */}
-          {/* LEFT COLUMN: Clean Developer Identity & UI Presentation */}
+          {/* LEFT COLUMN: Cinematic Staggered Entrance                 */}
           {/* ======================================================== */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             
-            {/* Status Pill UI */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-dark-card border border-dark-border mb-6 shadow-sm">
+            {/* 1. Status Pill — first element */}
+            <div className="hero-anim hero-anim-d0 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-dark-card border border-dark-border mb-6 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
@@ -107,8 +109,8 @@ export const Hero = ({ onOpenResume }) => {
               </span>
             </div>
 
-            {/* Name Heading with Clean UI Typography */}
-            <div className="mb-4">
+            {/* 2. Name Heading — second element */}
+            <div className="hero-anim hero-anim-d1 mb-4">
               <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold block mb-1">
                 Full-Stack & AI Software Developer
               </span>
@@ -117,8 +119,8 @@ export const Hero = ({ onOpenResume }) => {
               </h1>
             </div>
 
-            {/* Dynamic UI Role Switcher Card */}
-            <div className="w-full max-w-lg p-4 rounded-2xl bg-dark-surface/90 border border-dark-border mb-6 shadow-sm">
+            {/* 3. Role Switcher Card — third element */}
+            <div className="hero-anim hero-anim-d2 w-full max-w-lg p-4 rounded-2xl bg-dark-surface/90 border border-dark-border mb-6 shadow-sm">
               <div className="flex items-center justify-between gap-2 mb-2">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-1.5">
                   <Zap className="w-3 h-3 text-electric-400" />
@@ -148,13 +150,13 @@ export const Hero = ({ onOpenResume }) => {
               </div>
             </div>
 
-            {/* Short Bio Paragraph */}
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mb-8 font-light">
+            {/* 4. Short Bio — fourth element */}
+            <p className="hero-anim hero-anim-d3 text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mb-8 font-light">
               {personalInfo.bio}
             </p>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto mb-10">
+            {/* 5. CTA Buttons — fifth element */}
+            <div className="hero-anim hero-anim-d4 flex flex-wrap items-center gap-3.5 w-full sm:w-auto mb-10">
               
               {/* View Projects */}
               <button
@@ -196,8 +198,8 @@ export const Hero = ({ onOpenResume }) => {
               </a>
             </div>
 
-            {/* Quick Education & Credentials Row */}
-            <div className="pt-6 border-t border-dark-border w-full flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-mono text-slate-400">
+            {/* 6. Credentials Footer — sixth element */}
+            <div className="hero-anim hero-anim-d5 pt-6 border-t border-dark-border w-full flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-mono text-slate-400">
               <span className="flex items-center gap-1.5 text-slate-300">
                 <GraduationCap className="w-3.5 h-3.5 text-electric-400" /> VJIT (8.21 CGPA)
               </span>
@@ -212,9 +214,9 @@ export const Hero = ({ onOpenResume }) => {
           </div>
 
           {/* ======================================================== */}
-          {/* RIGHT COLUMN: Modern Interactive Developer Profile UI    */}
+          {/* RIGHT COLUMN: Interactive Developer Profile Card          */}
           {/* ======================================================== */}
-          <div className="lg:col-span-6">
+          <div className="hero-anim hero-anim-d3 lg:col-span-6">
             <div className="glass-card rounded-3xl border border-dark-border p-6 sm:p-7 shadow-2xl relative overflow-hidden">
               
               {/* Header: Developer Profile Card */}
@@ -318,28 +320,24 @@ export const Hero = ({ onOpenResume }) => {
                 </span>
                 
                 <div className="grid grid-cols-4 gap-2 text-center text-xs font-mono">
-                  {/* Step 1 */}
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Globe className="w-4 h-4 text-sky-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">Client UI</div>
                     <div className="text-[9px] text-slate-400">React</div>
                   </div>
 
-                  {/* Step 2 */}
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Server className="w-4 h-4 text-blue-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">API Layer</div>
                     <div className="text-[9px] text-slate-400">FastAPI/Node</div>
                   </div>
 
-                  {/* Step 3 */}
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Bot className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">AI Engine</div>
                     <div className="text-[9px] text-slate-400">CNN/Groq</div>
                   </div>
 
-                  {/* Step 4 */}
                   <div className="p-2.5 rounded-xl bg-dark-surface border border-dark-border">
                     <Database className="w-4 h-4 text-amber-400 mx-auto mb-1" />
                     <div className="text-[10px] font-bold text-white">Storage</div>
@@ -353,8 +351,8 @@ export const Hero = ({ onOpenResume }) => {
 
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="mt-12 lg:mt-16 flex flex-col items-center justify-center">
+        {/* Scroll Indicator — last element */}
+        <div className="hero-anim hero-anim-d6 mt-12 lg:mt-16 flex flex-col items-center justify-center">
           <button
             onClick={() => scrollToSection('about')}
             className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors group"

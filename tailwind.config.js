@@ -9,12 +9,23 @@ export default {
     extend: {
       colors: {
         dark: {
-          bg: '#07090e',         // Deep luxury obsidian
-          surface: '#0b101a',    // Subtle dark slate
-          card: '#0f1624',       // Sleek card background
-          cardHover: '#141d2f',  // Refined hover state
+          bg: '#07090e', // Deep luxury obsidian
+          surface: '#0b101a', // Subtle dark slate
+          card: '#0f1624', // Sleek card background
+          cardHover: '#141d2f', // Refined hover state
           border: 'rgba(255, 255, 255, 0.08)', // Crisp hairline border
           borderHover: 'rgba(56, 189, 248, 0.35)',
+        },
+        ocean: {
+          100: '#e0f7ff',
+          200: '#b3ecff',
+          300: '#80e0ff',
+          400: '#0a7ea9', // primary accent
+          500: '#0187c0',
+          600: '#016f96',
+          700: '#015f7a',
+          800: '#014f60',
+          900: '#003d44',
         },
         electric: {
           400: '#38bdf8',
@@ -30,6 +41,23 @@ export default {
           850: '#111827',
           950: '#030712',
         }
+      },
+      transition: {
+        // Custom transition utilities for premium feel
+        // Usage: transition-[property] duration-300 ease-custom
+        property: {
+          'colors': 'color, background-color, border-color',
+          'opacity': 'opacity',
+          'transform': 'transform',
+        },
+        duration: {
+          '200': '200ms',
+          '300': '300ms',
+          '500': '500ms',
+        },
+        timingFunction: {
+          'custom': 'cubic-bezier(0.22,1,0.36,1)',
+        },
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { projectsData } from '../data/portfolioData';
+import { Reveal } from './AnimatedSection';
 
 export const Projects = ({ onSelectProject }) => {
   const featuredProject = projectsData.find((p) => p.featured) || projectsData[0];
@@ -40,7 +41,7 @@ export const Projects = ({ onSelectProject }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <Reveal delay={0} className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-dark-card border border-dark-border text-slate-300 font-mono text-xs mb-3">
             <FolderGit2 className="w-3.5 h-3.5 text-electric-400" />
             <span>03. Featured Engineering</span>
@@ -51,12 +52,12 @@ export const Projects = ({ onSelectProject }) => {
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl">
             Real-world applications built with modern frontend frameworks, asynchronous Python backends, and AI/ML models.
           </p>
-        </div>
+        </Reveal>
 
         {/* ======================================================== */}
         {/* 1. LARGE FEATURED PROJECT SPOTLIGHT (AgriVerse) */}
         {/* ======================================================== */}
-        <div className="mb-14">
+        <Reveal delay={100} className="mb-14">
           <div className="glass-card rounded-3xl border border-dark-border p-6 sm:p-8 lg:p-10 relative overflow-hidden group">
             
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -187,17 +188,15 @@ export const Projects = ({ onSelectProject }) => {
 
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* ======================================================== */}
         {/* 2. THREE-COLUMN PROJECT GRID (VolleyTrack, AI Video, IntelliChat) */}
         {/* ======================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {otherProjects.map((project) => (
-            <div
-              key={project.id}
-              className="glass-card glass-card-hover rounded-2xl border border-dark-border p-6 flex flex-col justify-between group relative overflow-hidden"
-            >
+          {otherProjects.map((project, pIdx) => (
+            <Reveal key={project.id} delay={pIdx * 110} duration={850}>
+              <div className="glass-card glass-card-hover rounded-2xl border border-dark-border p-6 flex flex-col justify-between group relative overflow-hidden h-full">
               {/* Card Top */}
               <div>
                 
@@ -280,7 +279,9 @@ export const Projects = ({ onSelectProject }) => {
 
               </div>
 
-            </div>
+              </div>
+
+            </Reveal>
           ))}
         </div>
 

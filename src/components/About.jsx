@@ -12,6 +12,7 @@ import {
   Zap
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import { Reveal } from './AnimatedSection';
 
 export const About = () => {
   const highlights = [
@@ -42,7 +43,7 @@ export const About = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <Reveal delay={0} className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-dark-card border border-dark-border text-slate-300 font-mono text-xs mb-3">
             <Compass className="w-3.5 h-3.5 text-electric-400" />
             <span>01. Profile & Mindset</span>
@@ -53,7 +54,7 @@ export const About = () => {
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl">
             Enthusiastic Full Stack Developer with strong understanding of frontend, backend, databases, and AI systems.
           </p>
-        </div>
+        </Reveal>
 
         {/* Two-Column About Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -110,22 +111,25 @@ export const About = () => {
           {/* Right Column: 4 Highlight Cards */}
           <div className="lg:col-span-5 grid grid-cols-1 gap-4">
             {highlights.map((item, idx) => (
-              <div 
+              <Reveal
                 key={idx}
-                className="glass-card glass-card-hover p-5 rounded-2xl border border-dark-border flex items-start gap-4"
+                delay={idx * 90}
+                duration={800}
               >
-                <div className="p-2.5 rounded-xl bg-dark-card border border-dark-border flex-shrink-0">
-                  {item.icon}
+                <div className="glass-card glass-card-hover p-5 rounded-2xl border border-dark-border flex items-start gap-4">
+                  <div className="p-2.5 rounded-xl bg-dark-card border border-dark-border flex-shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-white text-base mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-display font-bold text-white text-base mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
 

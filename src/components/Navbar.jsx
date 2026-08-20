@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from './Button';
 import { Menu, X, FileText, Sparkles, Terminal } from 'lucide-react';
+import { NavIndicator } from './NavIndicator';
 import { GithubIcon } from './Icons';
 import { personalInfo } from '../data/portfolioData';
+import { smoothScrollTo } from '../utils/smoothScroll';
 
 export const Navbar = ({ onOpenResume }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef(null);
   const [activeSection, setActiveSection] = useState('hero');
 
   const navItems = [
@@ -44,12 +48,8 @@ export const Navbar = ({ onOpenResume }) => {
     const element = document.getElementById(id);
     if (element) {
       const navOffset = 70;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      const targetY = element.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      smoothScrollTo(targetY, 900); // slow, smooth 900ms scroll
     }
   };
 
@@ -85,24 +85,27 @@ export const Navbar = ({ onOpenResume }) => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-dark-surface/90 border border-dark-border px-3 py-1.5 rounded-full backdrop-blur-md">
+          <nav ref={navRef} className="hidden lg:flex items-center gap-1 bg-dark-surface/90 border border-dark-border px-3 py-1.5 rounded-full backdrop-blur-md">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
                 <button
                   key={item.id}
+                  data-section={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                    isActive
-                      ? 'bg-electric-500/15 text-electric-400 border border-electric-400/30'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
-                  }`}
+                      isActive
+                        ? 'bg-ocean-400 text-white border border-ocean-500/30'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-ocean-500/5'
+                    }`}
                 >
                   {item.label}
                 </button>
               );
             })}
           </nav>
+          {/* Nav Indicator */}
+          <NavIndicator navRef={navRef} activeSection={activeSection} />
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
@@ -117,13 +120,10 @@ export const Navbar = ({ onOpenResume }) => {
               <GithubIcon className="w-4 h-4" />
             </a>
 
-            <button
-              onClick={onOpenResume}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-dark-bg font-semibold text-xs tracking-wide uppercase hover:bg-slate-200 transition-all active:scale-95 shadow-sm"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Resume</span>
-            </button>
+            <Button onClick={onOpenResume} className="bg-white text-dark-bg hover:bg-slate-200">
+                <FileText className="w-3.5 h-3.5" />
+                <span>Resume</span>
+              </Button>
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -159,10 +159,10 @@ export const Navbar = ({ onOpenResume }) => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                    isActive
-                      ? 'bg-electric-500/15 text-electric-400 border border-electric-400/30'
-                      : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                  }`}
+                      isActive
+                        ? 'bg-ocean-400 text-white border border-ocean-500/30'
+                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    }`}
                 >
                   <span>{item.label}</span>
                   {isActive && <Sparkles className="w-4 h-4 text-electric-400" />}

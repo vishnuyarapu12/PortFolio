@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatedSection } from './components/AnimatedSection';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -24,37 +25,46 @@ export const App = () => {
       {/* Sticky Navigation Bar */}
       <Navbar onOpenResume={() => setIsResumeModalOpen(true)} />
 
-      {/* Main Content Sections */}
       <main>
-        {/* 1. Hero / Personal */}
+        {/* Hero has its own cinematic staggered entrance — no AnimatedSection wrapper */}
         <Hero onOpenResume={() => setIsResumeModalOpen(true)} />
 
-        {/* 2. About Me */}
-        <About />
+        {/* Every section below reveals cinematically when scrolled into view */}
+        <AnimatedSection>
+          <About />
+        </AnimatedSection>
 
-        {/* 3. Technical Skills */}
-        <Skills />
+        <AnimatedSection>
+          <Skills />
+        </AnimatedSection>
 
-        {/* 4. Projects Showcase */}
-        <Projects onSelectProject={(project) => setSelectedProject(project)} />
+        <AnimatedSection>
+          <Projects onSelectProject={(project) => setSelectedProject(project)} />
+        </AnimatedSection>
 
-        {/* 5. Experience / Learning Timeline */}
-        <Experience />
+        <AnimatedSection>
+          <Experience />
+        </AnimatedSection>
 
-        {/* 6. Certifications */}
-        <Certifications />
+        <AnimatedSection>
+          <Certifications />
+        </AnimatedSection>
 
-        {/* 7. Education */}
-        <Education />
+        <AnimatedSection>
+          <Education />
+        </AnimatedSection>
 
-        {/* 8. Coding Profiles (GitHub, LeetCode) */}
-        <CodingProfiles />
+        <AnimatedSection>
+          <CodingProfiles />
+        </AnimatedSection>
 
-        {/* 9. Dedicated Resume Section */}
-        <ResumeSection onOpenResume={() => setIsResumeModalOpen(true)} />
+        <AnimatedSection>
+          <ResumeSection onOpenResume={() => setIsResumeModalOpen(true)} />
+        </AnimatedSection>
 
-        {/* 10. Contact Section */}
-        <Contact />
+        <AnimatedSection>
+          <Contact />
+        </AnimatedSection>
       </main>
 
       {/* Minimal Footer */}
