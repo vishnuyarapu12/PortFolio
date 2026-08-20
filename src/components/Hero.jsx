@@ -29,7 +29,7 @@ export const Hero = ({ onOpenResume }) => {
     if (el) {
       const navOffset = 72;
       const pos = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - navOffset);
-      smoothScrollTo(pos, 600);
+      smoothScrollTo(pos);
     }
   };
 

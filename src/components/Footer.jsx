@@ -10,7 +10,7 @@ import { smoothScrollTo } from '../utils/smoothScroll';
 
 export const Footer = () => {
   const scrollToTop = () => {
-    smoothScrollTo(0, 600);
+    smoothScrollTo(0);
   };
 
   return (

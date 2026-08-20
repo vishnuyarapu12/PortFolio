@@ -27,14 +27,21 @@ export const Navbar = ({ onOpenResume }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = navItems.map((item) => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 160;
+      // If scrolled near page bottom, activate contact
+      if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 70)) {
+        setActiveSection('contact');
+        return;
+      }
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
-          break;
+      const scrollPos = window.scrollY + 120;
+      for (let i = navItems.length - 1; i >= 0; i--) {
+        const el = document.getElementById(navItems[i].id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.pageYOffset;
+          if (scrollPos >= top) {
+            setActiveSection(navItems[i].id);
+            break;
+          }
         }
       }
     };
@@ -46,11 +53,13 @@ export const Navbar = ({ onOpenResume }) => {
 
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
+    setActiveSection(id); // Immediate visual response on nav slider
+
     const element = document.getElementById(id);
     if (element) {
-      const navOffset = 72;
+      const navOffset = 70;
       const targetY = Math.max(0, element.getBoundingClientRect().top + window.pageYOffset - navOffset);
-      smoothScrollTo(targetY, 600);
+      smoothScrollTo(targetY);
     }
   };
 
@@ -98,7 +107,7 @@ export const Navbar = ({ onOpenResume }) => {
                   key={item.id}
                   data-section={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative z-10 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400 ${
+                  className={`relative z-10 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400 cursor-pointer ${
                     isActive
                       ? 'text-white font-semibold'
                       : 'text-slate-400 hover:text-slate-200'
@@ -139,7 +148,7 @@ export const Navbar = ({ onOpenResume }) => {
               onClick={onOpenResume}
               className="px-3 py-1.5 rounded-lg bg-dark-card border border-dark-border text-slate-200 font-medium text-xs flex items-center gap-1.5 active:scale-95"
             >
-              <FileText className="w-3.5 h-3.5 text-electric-400" />
+              <FileText className="w-3.5 h-3.5 text-cyan-400" />
               <span>CV</span>
             </button>
 

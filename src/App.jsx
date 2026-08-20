@@ -34,8 +34,10 @@ export const App = () => {
       <Navbar onOpenResume={() => setIsResumeModalOpen(true)} />
 
       <main>
-        {/* Hero with progressive cinematic staggered entrance */}
-        <Hero onOpenResume={() => setIsResumeModalOpen(true)} />
+        {/* Hero Section */}
+        <AnimatedSection>
+          <Hero onOpenResume={() => setIsResumeModalOpen(true)} />
+        </AnimatedSection>
 
         {/* 1. About Me */}
         <AnimatedSection>

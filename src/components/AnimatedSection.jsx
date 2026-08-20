@@ -4,18 +4,18 @@ import { useReveal } from '../hooks/useReveal';
 /**
  * AnimatedSection — cinematic section-level reveal wrapper.
  *
- * Wraps an entire section. When 15% of the section enters the viewport,
- * it gently fades in and rises from 40px below with a soft scale-up.
+ * Wraps an entire section. Smoothly fades and rises every time
+ * the section enters the viewport during page scrolling or navigation.
  *
  * Props:
  *   delay     — transitionDelay in ms (default 0)
- *   threshold — IntersectionObserver threshold (default 0.12)
+ *   threshold — IntersectionObserver threshold (default 0.1)
  *   className — forwarded to wrapper div
  */
 export const AnimatedSection = ({
   children,
   delay = 0,
-  threshold = 0.12,
+  threshold = 0.1,
   className = '',
 }) => {
   const { ref, inView } = useReveal(threshold);
@@ -28,10 +28,10 @@ export const AnimatedSection = ({
         opacity: inView ? 1 : 0,
         transform: inView
           ? 'translateY(0px) scale(1)'
-          : 'translateY(40px) scale(0.97)',
+          : 'translateY(35px) scale(0.975)',
         transition: `
-          opacity 950ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
-          transform 950ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
+          opacity 850ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
+          transform 850ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
         `,
         willChange: 'opacity, transform',
       }}
@@ -50,8 +50,8 @@ export const AnimatedSection = ({
  * Props:
  *   delay     — transitionDelay in ms for stagger (default 0)
  *   y         — translateY start distance in px (default 20)
- *   duration  — animation duration in ms (default 750)
- *   threshold — IntersectionObserver threshold (default 0.1)
+ *   duration  — animation duration in ms (default 700)
+ *   threshold — IntersectionObserver threshold (default 0.08)
  *   as        — element tag to render (default 'div')
  *   className — forwarded to element
  */
@@ -59,8 +59,8 @@ export const Reveal = ({
   children,
   delay = 0,
   y = 20,
-  duration = 750,
-  threshold = 0.1,
+  duration = 700,
+  threshold = 0.08,
   as: Tag = 'div',
   className = '',
   style = {},
